@@ -11,6 +11,12 @@ exports.fetchUsers = async(res,req)=>{
     res.json({"all user data": users});
 }
 
+// fetch user ko data but no password
+//send gar name only user ko
+//tesko profile show garne
+// me function ulululu name and id to check login
+
+
 exports.fetchShops = async(res,req)=>{
     const shops = await model.shopModel.find({}).populate();
     res.json({"all shops data": shops});
