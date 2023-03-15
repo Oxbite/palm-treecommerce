@@ -6,10 +6,11 @@ import {
   Link,
   Outlet,
 } from "react-router-dom";
+import Layout from "./components/Layout";
 
 
 function Home(){
-  return(<><Outlet /></>)
+  return(<>Hello <Outlet /></>)
 }
 
 export default function App() {
@@ -17,7 +18,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} >
-          <Route index element= {<div>WTFFF</div>}/>
+          <Route index element= {<Layout />}/>
           </Route>
         {/* <Route path="users/*" element={<Users />} /> */}
       </Routes>

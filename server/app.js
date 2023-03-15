@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 const index = require('./routes/index'); 
-
+var cors = require('cors')
 const port = 4000;
 // ********************************************** importing ************************************************
 
@@ -18,6 +18,7 @@ app.use(                //this mean we don't need to use body-parser anymore
 
 // app.use(bodyParser.urlencoded({extended:false}));
 
+app.use(cors())
 
 // routing toindex page
 app.use(index);
