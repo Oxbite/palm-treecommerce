@@ -1,6 +1,7 @@
 const { default: mongoose, Schema } = require("mongoose");
 
-exports.userModel = new mongoose.Schema({
+
+const user = new mongoose.Schema({
     Fname: {
         type:  String,
         required: true
@@ -8,22 +9,26 @@ exports.userModel = new mongoose.Schema({
     Lname:{
         type: String,
         required: true
+
     },
     email:{
         type: String,
         required: true
+
     },
     role:{
         type: String,
         required: true
+
     },
-    passwod:{
+    password:{
         type: String,
         required: true
+
     }
 })
 
-exports.categoryModel = new mongoose.Schema({
+const category = new mongoose.Schema({
     name:{
         type: String,
         required: true
@@ -35,7 +40,7 @@ exports.categoryModel = new mongoose.Schema({
     },
 })
 
-exports.shopModel = new mongoose.Schema({
+const shop = new mongoose.Schema({
     name:{
         type: String,
         required: true
@@ -50,7 +55,7 @@ exports.shopModel = new mongoose.Schema({
     }
 })
 
-exports.productModel=new mongoose.Schema({
+const product =new mongoose.Schema({
     name:{
         type: String,
         required: true
@@ -77,3 +82,9 @@ exports.productModel=new mongoose.Schema({
         required: true
     },
 })
+
+module.exports.userModel = mongoose.model('User', user);
+module.exports.categoryModel = mongoose.model('Categories', category);
+module.exports.shopModel = mongoose.model('Shops', shop);
+module.exports.productModel = mongoose.model('Products', product);
+

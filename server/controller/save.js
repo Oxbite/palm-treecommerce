@@ -3,7 +3,8 @@ const { disconnect } = require('mongoose');
 const dbModel = require('../model/dbModel');
 
 
-exports.userSave = (res,req) => {
+exports.userSave = async (req,res) => {
+    console.log(req.body)
     const users = new dbModel.userModel({
         Fname: req.body.Fname,
         Lname: req.body.Lname,
@@ -12,20 +13,18 @@ exports.userSave = (res,req) => {
         password: req.body.password 
 })
 
-users.save((err) => {
-    if(err){
-        const error = "Eror saving " + req.body.name + "  to database";
-        console.log("eror adding: " + err);
-        res.json({"error":error});
-
-    }
-    else{
-        console.log("products saving success!")
-    }
-})
+try {
+    const user = await users.save()
+    console.log("user saving success!")
+}
+catch(err) {
+// const error = "Eror saving " + req.body.name + "  to database";
+console.log("eror adding: " + err);
+res.json({"error":err});
+}
 }
 
-exports.categorySave = (res,req) =>{
+exports.categorySave = (req,res) =>{
     const categories = new dbModel.categoryModel({
         name: req.body.name,
         status: req.body.status

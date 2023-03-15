@@ -6,6 +6,5 @@ exports.connect = (req,res) => {
     console.log("Connected!"))
     .catch((err)=>
     console.log("Error connecting: " + err));
-
     return db;
 }
