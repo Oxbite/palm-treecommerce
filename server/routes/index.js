@@ -25,7 +25,10 @@ route.post('/saveCategory' , save.categorySave);
 
 route.get('/fetchUser' , fetch.fetchUsers );
 route.get('/fetchUserName' , fetch.fetchUsersName );
-route.get('/delUser/' ,  del.deleteuser) 
+route.get('/delUser/' ,  del.deleteUser);
+route.get('/delShop/' ,  del.deleteShop);
+route.get('/delCategory/' ,  del.deleteCategory);
+route.get('/delProducts/' ,  del.deleteProducts);
 
 
 module.exports = route;
