@@ -4,6 +4,8 @@ const express = require('express');
 const route = express.Router();
 const dbcon = require('../controller/dbcon');
 const save = require('../controller/save');
+const fetch = require('../controller/fetch');
+const del = require('../controller/delete');
 // ********************************************** importing ************************************************
 
 // route.get('/login' , dbcon.connect);
@@ -17,4 +19,13 @@ route.get('/login/' ,  (req, res) =>{
 });
 
 route.post('/saveUser' , save.userSave);
+route.post('/saveProduct' , save.productSave);
+route.post('/saveShop' , save.shopSave);
+route.post('/saveCategory' , save.categorySave);
+
+route.get('/fetchUser' , fetch.fetchUsers );
+route.get('/fetchUserName' , fetch.fetchUsersName );
+route.get('/delUser/' ,  del.deleteuser) 
+
+
 module.exports = route;

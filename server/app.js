@@ -18,7 +18,7 @@ app.use(                //this mean we don't need to use body-parser anymore
 
 // app.use(bodyParser.urlencoded({extended:false}));
 
-app.use(cors())
+app.use(cors());
 
 // routing toindex page
 app.use(index);
