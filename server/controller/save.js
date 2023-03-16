@@ -21,6 +21,7 @@ catch(err) {
     console.log("eror adding: " + err);
     res.json({"error":"error has be occuring since the development, just ignore"});
 }
+
 };
 
 exports.categorySave = async (req,res) =>{

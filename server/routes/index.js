@@ -21,13 +21,13 @@ dbcon.connect();
 // });
 
 route.post('/login' , check.checkUser)
-route.post('/saveUser' , save.userSave);
+route.post('/Register ' , save.userSave);
 route.post('/saveProduct' , save.productSave);
 route.post('/saveShop' , save.shopSave);
 route.post('/saveCategory' , save.categorySave);
 
 route.get('/fetchUser' , fetch.fetchUsers );
-route.get('/fetchUserName' , fetch.fetchUsersName );
+route.get('/me' , fetch.fetchUsersName );
 route.get('/delUser/' ,  del.deleteUser);
 route.get('/delShop/' ,  del.deleteShop);
 route.get('/delCategory/' ,  del.deleteCategory);
