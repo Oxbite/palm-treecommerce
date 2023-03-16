@@ -5,6 +5,7 @@ const route = express.Router();
 const dbcon = require('../controller/dbcon');
 const save = require('../controller/save');
 const fetch = require('../controller/fetch');
+const check = require('../controller/login')
 const del = require('../controller/delete');
 // ********************************************** importing ************************************************
 
@@ -13,12 +14,13 @@ const del = require('../controller/delete');
 
 dbcon.connect();
 //login ko url bata data line aani db ma check garne fuck auth token bullshit 
-route.get('/login/' ,  (req, res) =>{
-    //got id from url (params)
-    const e = req.query.id;
-    res.json({"id":e});
-});
+// route.get('/login/' ,  (req, res) =>{
+//     //got id from url (params)
+//     const e = req.query.id;
+//     res.json({"id":e});
+// });
 
+route.post('/login' , check.checkUser)
 route.post('/saveUser' , save.userSave);
 route.post('/saveProduct' , save.productSave);
 route.post('/saveShop' , save.shopSave);

@@ -1,5 +1,4 @@
 //  ************************************ importing ************************************
-startSession();
 const express = require('express');
 const { Schema, startSession } = require('mongoose');
 const router = express.Router();
@@ -7,6 +6,7 @@ const dbcon = require('../controller/dbcon');
 const model = require('../model/dbModel');
 const { use } = require('../routes');
 const fetchh = require('./fetch');
+startSession();
 
 //  ************************************ importing ************************************
 
@@ -27,7 +27,7 @@ exports.checkUser = async (req,res) =>{
         }
 
         fetchh.fetchUsersName();
-        
+
     } catch (error) {
         console.log(error);
         res.json({"Error Logging in": "Server error, try again"});
