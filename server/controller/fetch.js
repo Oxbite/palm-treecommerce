@@ -1,10 +1,9 @@
 //  ************************************ importing ************************************
 const express = require('express');
-const { Schema } = require('mongoose');
-const router = express.Router();
+const session = require('express-session');
+const { Schema, startSession } = require('mongoose');
 const dbcon = require('../controller/dbcon');
 const model = require('../model/dbModel');
-const { use } = require('../routes');
 //  ************************************ importing ************************************
 
 
@@ -25,9 +24,10 @@ exports.fetchUsers = async(req,res) => {
 //only gets name and id of user-----------> ME FUNCTION
 exports.fetchUsersName = async(req,res) => {
     const usersObj = await model.userModel.find({}, '_id Fname Lname').populate();
-    res.session.user = {userName: usersObj[0].Fname +" "+ usersObj[0].Lname,userId: usersObj[0]._id };
-    console.log(usersName);
-    res.json({"userId": userId, "user name": usersName});
+    const user = usersObj[0].Fname +" "+ usersObj[0].Lname;
+    const userId = usersObj[0]._id;
+    console.log(session.userid);
+    res.json({"userId": userId, "userName": user});
 }
 
 //*************************************************** USERS  ***************************************************/

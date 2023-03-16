@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const cookieParser = require("cookie-parser");
 const app = express();
 const index = require('./routes/index'); 
 var cors = require('cors')
@@ -18,13 +19,15 @@ app.use(                //this mean we don't need to use body-parser anymore
 ); 
 
 // app.use(bodyParser.urlencoded({extended:false}));
-
+app.use(cookieParser());
+const day = 1000 * 60 * 60 * 12; //12 hours
 app.use(session({
   secret: 'secret',
-  resave: false,
-  saveUninitialized: false
+  saveUninitialized:true,
+  resave :false,
+  cookie: { maxAge: day }
 }));
-
+app.use(cookieParser());
 app.use(cors());
 
 // routing toindex page
