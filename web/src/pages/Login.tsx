@@ -14,23 +14,29 @@ export const Login = () => {
   const initialValues: MyFormValues = { email: "", password: "" };
   const [hasSubmitted, setSubmitted] = useState<boolean>(false);
   const navigate = useNavigate();
+  const [loggenIn, setLoggedIn] = useState(false);
   return (
     <div>
       <h1>Login</h1>
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, actions) => {
-          console.log({ values, actions });
-          await sleep(500);
-          if (values.email === "fake@fake.com") {
-            actions.setErrors({ email: "fake email error" });
-          } else if (values.password === "fake") {
-            actions.setErrors({ password: "fake password error" });
+          const data = await fetch("http://localhost:4000/login", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values),
+          });
+          const jdata = await data.json();
+          if (jdata.error) {
+            actions.setErrors({ email: jdata.error });
           } else {
             navigate("/", { replace: true });
           }
-          actions.setSubmitting(false);
           setSubmitted(true);
+          actions.setSubmitting(false);
         }}
       >
         {({ isSubmitting, errors }) => (
