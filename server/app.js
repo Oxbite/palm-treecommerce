@@ -9,9 +9,16 @@ var cors = require('cors')
 const port = 4000;
 // ********************************************** importing ************************************************
 
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(express.json()); //this is the build in express body-parser 
+app.use(                //this mean we don't need to use body-parser anymore
+  express.urlencoded({
+    extended: true,
+  })
+); 
 
-app.use(cors())
+// app.use(bodyParser.urlencoded({extended:false}));
+
+app.use(cors());
 
 // routing toindex page
 app.use(index);
