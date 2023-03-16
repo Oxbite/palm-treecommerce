@@ -1,3 +1,3 @@
-export const Register = ()=>{
-    <></>
-}
+export const Register = () => {
+  <></>;
+};
