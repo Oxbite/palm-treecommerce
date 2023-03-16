@@ -1,20 +1,33 @@
 const { response } = require('express');
 const { disconnect } = require('mongoose');
 const dbModel = require('../model/dbModel');
+const bcrypt = require("bcrypt")
 
 
 exports.userSave = async (req,res) => {
-    console.log(req.body)
+    
+    try {
+		const salt = await bcrypt.genSalt(10);
+		password = await bcrypt.hash(req.body.password, salt);
+	} catch {
+		return res.json({
+            error: "Hashing the password failed. Please Try again!"
+        })
+	}
     const users = new dbModel.userModel({
         Fname: req.body.Fname,
         Lname: req.body.Lname,
         email: req.body.email,
         role: req.body.role,
-        password: req.body.password 
+        password 
 })
 
 try {
     const user = await users.save()
+    res.json({
+        status: "success",
+        error: null,
+    })
     console.log("user saving success!")
 }
 catch(err) {

@@ -21,7 +21,7 @@ dbcon.connect();
 // });
 
 route.post('/login' , check.checkUser)
-route.post('/saveUser' , save.userSave);
+route.post('/register' , save.userSave);
 route.post('/saveProduct' , save.productSave);
 route.post('/saveShop' , save.shopSave);
 route.post('/saveCategory' , save.categorySave);
