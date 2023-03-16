@@ -7,6 +7,7 @@ const model = require('../model/dbModel');
 const { use } = require('../routes');
 const fetchh = require('./fetch');
 const bcrypt = require ('bcrypt');
+const session = require('express-session');
 startSession();
 
 //  ************************************ importing ************************************
@@ -39,3 +40,15 @@ exports.checkUser = async (req,res) =>{
     }
 
 } 
+
+
+exports.logout= (req,res)=>{
+    req.session.destroy((err) => {
+        if (err) {
+            res.json({"Error Logging Out": "Server Error! Could not logout"});
+        } else {
+          res.json({"Success": "Sucessufully logged out"});
+        }
+      });
+    res.clearCookie('token');      
+}

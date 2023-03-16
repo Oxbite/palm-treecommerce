@@ -9,27 +9,28 @@ const model = require('../model/dbModel');
 
 
 //*************************************************** USERS  ***************************************************/
-exports.fetchAllUsers = async(req,res)=>{
-    const users= await model.userModel.find({}).populate();
-        res.json({"all user data": users});
-}
+// exports.fetchAllUsers = async(req,res)=>{
+//     const users= await model.userModel.find({}).populate();
+//         res.json({"all user data": users});
+// }
 
 
 //fetches all user data except password
 exports.fetchUsers = async(req,res) => {
-    const users = await model.userModel.find({}, 'Fname Lname email role').populate();
+    const users = await model.userModel.find({}, 'Fname Lname email role status').populate();
     res.json({"all user name": users});
 } 
 
 //only gets name and id of user-----------> ME FUNCTION
 exports.fetchUsersName = async(req,res) => {
-    const usersObj = await model.userModel.find({}, '_id Fname Lname').populate();
+    const usersObj = await model.userModel.find({}, '_id Fname Lname status').populate();
     const user = usersObj[0].Fname +" "+ usersObj[0].Lname;
     const userId = usersObj[0]._id;
-    res.json({"userId": userId, "userName": user});
+    const userStatus = usersObj[0].status;
+    res.json({"userId": userId, "userName": user , "userStatus": userStatus});
 }
 
-//*************************************************** USERS  ***************************************************/
+//*************************************************** USERS END ***************************************************/
 
 
 exports.fetchShops = async(res,req)=>{

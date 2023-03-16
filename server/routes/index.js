@@ -20,12 +20,13 @@ dbcon.connect();
 //     res.json({"id":e});
 // });
 
-route.post('/login' , check.checkUser)
+route.post('/login' , check.checkUser);
 route.post('/register' , save.userSave);
 route.post('/saveProduct' , save.productSave);
 route.post('/saveShop' , save.shopSave);
 route.post('/saveCategory' , save.categorySave);
 
+Router.get('/logout' , check.logout);
 route.get('/fetchUser' , fetch.fetchUsers );
 route.get('/me' , fetch.fetchUsersName );
 route.get('/delUser/' ,  del.deleteUser);

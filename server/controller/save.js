@@ -2,10 +2,11 @@ const { response } = require('express');
 const { disconnect } = require('mongoose');
 const dbModel = require('../model/dbModel');
 const bcrypt = require("bcrypt")
+const dbcon = require('../controller/dbcon')
 
 
 exports.userSave = async (req,res) => {
-    
+    dbcon.connect();
     try {
 		const salt = await bcrypt.genSalt(10);
 		password = await bcrypt.hash(req.body.password, salt);
@@ -19,7 +20,7 @@ exports.userSave = async (req,res) => {
         Lname: req.body.Lname,
         email: req.body.email,
         role: req.body.role,
-        password 
+        password, 
 })
 
 try {
@@ -37,12 +38,13 @@ try {
 }
 catch(err) {
     console.log("eror adding: " + err);
-    res.json({"error":"error has be occuring since the development, just ignore"});
+    res.json({"error":"Errors have been occuring since the development, just ignore"});
 }
-
+    mongoose.connection.close();
 };
 
 exports.categorySave = async (req,res) =>{
+    dbcon.connect();
     const categories = new dbModel.categoryModel({
         name: req.body.name,
         status: req.body.status
@@ -56,9 +58,12 @@ exports.categorySave = async (req,res) =>{
         console.log("eror adding: " + err);
         res.json({"error":"error has be occuring since the development, just ignore"});
     }
+    mongoose.connection.close();
+
 };
 
 exports.productSave = async (req,res) =>{
+    dbcon.connect();
     const products = new dbModel.productModel({
         name: req.body.name,
         price: req.body.price,
@@ -76,9 +81,12 @@ exports.productSave = async (req,res) =>{
         console.log("eror adding: " + err);
         res.json({"error":"error has be occuring since the development, just ignore"});
     }
+    mongoose.connection.close();
+
 };
 
 exports.shopSave = async (req,res) =>{
+    dbcon.connect();
     const shops = new dbModel.shopModel({
         name: req.body.name,
         address: req.body.name,
@@ -93,4 +101,7 @@ exports.shopSave = async (req,res) =>{
         console.log("eror adding: " + err);
         res.json({"error":"error has be occuring since the development, just ignore"});
     }
+    
+    mongoose.connection.close();
+
 };
