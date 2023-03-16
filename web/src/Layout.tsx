@@ -11,8 +11,8 @@ export default class Layout extends React.Component{
         return (<ChakraProvider theme={theme}>
             <Box textAlign="center" fontSize="xl">
                 <NavBar /> 
-                  <Outlet />
                 <ColorModeSwitcher justifySelf="flex-end" />
+                  <Outlet />
             </Box>
           </ChakraProvider>
           );
