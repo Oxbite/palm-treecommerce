@@ -13,7 +13,6 @@ startSession();
 
 
 exports.checkUser = async (req,res) =>{
-    // get from body -> check in databse -> if yes then store name and id in session ___> else throw error
     var session;
     const email = req.body.email;
     const password = req.body.password; 
@@ -29,7 +28,7 @@ exports.checkUser = async (req,res) =>{
         }
         session = req.session;
         session.userName = username;
-        session.id = user[0]._id;
+        session._id = user[0]._id;
 
         res.json({"status": "Success logging in" , "username": session.userName , "id":session.id});
         // console.log(session.userName);
