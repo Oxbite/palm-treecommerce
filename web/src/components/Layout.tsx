@@ -7,30 +7,39 @@ async function getuser() {
     return id;
 } 
 
-type result =  {
+type resultType =  {
     id: String
 }
 
 export default function Layout() {
-    const [result, setResult] = useState<result[]>([]);
-    console.log(result)
-
+    const [result, setResult] = useState<resultType>(); 
+    // const [message, setMessage] = useState<>();
     useEffect(() => {
     const api = async () => {
         const data = await fetch("http://localhost:4000/login/?id=6", {
         method: "GET"
         });
         const jsonData = await data.json();
-        setResult(jsonData.results);
+        console.log(jsonData)
+        setResult(jsonData);
     };
 
     api();
     }, []);
-    return(
-        <>Very cool  {
-            result.map((value)=>{
-                return(<>asdfasdf {value.id}</>)
-            })
-        }</>
-    );
+    console.log("result " + result)
+
+    if(result == undefined) {
+        return(<>WTFFF 
+            </>
+            )
+    }
+    else {
+
+        return(
+            <>WTFFF 
+            { result.id
+           }
+            </>
+        );
+    }
 }
