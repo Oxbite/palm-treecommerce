@@ -27,7 +27,7 @@ route.post('/saveShop' , save.shopSave);
 route.post('/saveCategory' , save.categorySave);
 
 route.get('/fetchUser' , fetch.fetchUsers );
-route.get('/fetchUserName' , fetch.fetchUsersName );
+route.get('/me' , fetch.fetchUsersName );
 route.get('/delUser/' ,  del.deleteUser);
 route.get('/delShop/' ,  del.deleteShop);
 route.get('/delCategory/' ,  del.deleteCategory);

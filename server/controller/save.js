@@ -28,12 +28,18 @@ try {
         status: "success",
         error: null,
     })
-    console.log("user saving success!")
+    console.log("user saving success!");
+    session = req.session;
+    session.userName = username;
+    session._id = user[0]._id;
+
+    res.json({"status": "Success logging in" , "username": session.userName , "id":session.id});
 }
 catch(err) {
     console.log("eror adding: " + err);
     res.json({"error":"error has be occuring since the development, just ignore"});
 }
+
 };
 
 exports.categorySave = async (req,res) =>{
