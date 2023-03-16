@@ -3,6 +3,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 const app = express();
 const index = require('./routes/index'); 
 var cors = require('cors')
@@ -18,10 +19,17 @@ app.use(                //this mean we don't need to use body-parser anymore
 
 // app.use(bodyParser.urlencoded({extended:false}));
 
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false
+}));
+
 app.use(cors());
 
 // routing toindex page
 app.use(index);
+
 
 app.listen(port);
 console.log('server live at: ' + port);
