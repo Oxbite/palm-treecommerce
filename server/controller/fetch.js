@@ -26,7 +26,6 @@ exports.fetchUsersName = async(req,res) => {
     const usersObj = await model.userModel.find({}, '_id Fname Lname').populate();
     const user = usersObj[0].Fname +" "+ usersObj[0].Lname;
     const userId = usersObj[0]._id;
-    console.log(session.userid);
     res.json({"userId": userId, "userName": user});
 }
 
