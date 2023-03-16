@@ -9,28 +9,19 @@ import {
   Outlet,
 } from "react-router-dom";
 import Layout from "./Layout";
+import { Home } from "./pages/Home";
+import { Login } from "./pages/Login";
 
 
-type result =  {
-  id: String
-}
 
-type propType = {
-  message: String
-}
-
-function Home({message}:propType){
-  
-  return(<> <h1>{message}</h1></>)
-}
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element= {<Home message="Hi" />} />
-          <Route path="/hello" element= {<Home message="Hello" />} />
+          <Route index element= {<Home userName="Hi" />} />
+          <Route path="login" element= {<Login />} />
           </Route>
         {/* <Route path="users/*" element={<Users />} /> */}
       </Routes>
