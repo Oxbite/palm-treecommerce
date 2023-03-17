@@ -12,7 +12,6 @@ const del = require('../controller/delete');
 
 // route.get('/login' , dbcon.connect);
 
-dbcon.connect();
 //login ko url bata data line aani db ma check garne fuck auth token bullshit 
 // route.get('/login/' ,  (req, res) =>{
 //     //got id from url (params)
@@ -26,7 +25,7 @@ route.post('/saveProduct' , save.productSave);
 route.post('/saveShop' , save.shopSave);
 route.post('/saveCategory' , save.categorySave);
 
-Router.get('/logout' , check.logout);
+route.get('/logout' , check.logout);
 route.get('/fetchUser' , fetch.fetchUsers );
 route.get('/me' , fetch.fetchUsersName );
 route.get('/delUser/' ,  del.deleteUser);

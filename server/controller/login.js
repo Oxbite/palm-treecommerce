@@ -17,8 +17,12 @@ exports.checkUser = async (req,res) =>{
     var session;
     const email = req.body.email;
     const password = req.body.password; 
-
+    
     try {
+        if(!(await dbcon.connect())) {
+            console.log("terobau")
+            throw "err";
+        }
         const user = await model.userModel.find({email}).exec();
         console.log(user);
         if(!user){
