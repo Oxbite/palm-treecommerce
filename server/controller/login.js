@@ -49,6 +49,7 @@ exports.checkUser = async (req, res) => {
 exports.logout = (req, res) => {
   req.session.destroy((err) => {
     if (err) {
+      //good
       res.json({ success: false });
     } else {
       res.json({ success: true });
