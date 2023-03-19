@@ -1,4 +1,5 @@
 export type userType ={
     id?:String,
-    userName?:String
-}
+    userName?:String,
+    error?:string
+} | null;

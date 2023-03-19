@@ -1,3 +1,5 @@
 import { userType } from "../types/userType";
 
-export const Home = ({ userName }: userType) => <h1>Hello {userName}</h1>;
+type user = { userName: string };
+
+export const Home = ({ userName }: user) => <h1>Hello {userName}</h1>;

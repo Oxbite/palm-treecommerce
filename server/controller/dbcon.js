@@ -1,13 +1,8 @@
-const { default: mongoose } = require("mongoose")
+const { default: mongoose } = require("mongoose");
 
-exports.connect = async (req,res) => {
-    try {
-        await mongoose.connect("asdfasdfasdf");
-
-    } catch (err) {
-
-        return false;
-    }
-        
-    return true;
-}
+exports.connect = async (req, res) => {
+  await mongoose.connect(
+    "mongodb+srv://bliss:2eRYfCRdRuVMXi7M@woodland.pfprl.mongodb.net/?retryWrites=true&w=majority"
+  );
+  return true;
+};

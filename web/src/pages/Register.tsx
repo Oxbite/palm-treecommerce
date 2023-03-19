@@ -19,27 +19,32 @@ export const Register = () => {
     password: "",
     Lname: "",
     Fname: "",
-    role: "",
+    role: "Admin",
   };
   const [hasSubmitted, setSubmitted] = useState<boolean>(false);
   const navigate = useNavigate();
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Register</h1>
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, actions) => {
-          console.log({ values, actions });
-          await sleep(500);
-          if (values.email === "fake@fake.com") {
-            actions.setErrors({ email: "fake email error" });
-          } else if (values.password === "fake") {
-            actions.setErrors({ password: "fake password error" });
+          const data = await fetch("http://localhost:4000/register", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values),
+          });
+          const jdata = await data.json();
+          if (jdata.error) {
+            actions.setErrors({ email: jdata.error });
           } else {
             navigate("/", { replace: true });
           }
-          actions.setSubmitting(false);
           setSubmitted(true);
+          actions.setSubmitting(false);
         }}
       >
         {({ isSubmitting, errors }) => (
@@ -56,23 +61,22 @@ export const Register = () => {
             </Box>
 
             <Box>
-              <label htmlFor="email">email</label>
+              <label htmlFor="email">First Name</label>
               <Field
-                id="email"
-                name="email"
+                id="Fname"
+                name="Fname"
                 placeholder="eg. email@email.com"
-                style={errors.email ? { border: "2px solid red" } : {}}
+                style={errors.Fname ? { border: "2px solid red" } : {}}
               />
               {errors.email}
             </Box>
-
             <Box>
-              <label htmlFor="email">email</label>
+              <label htmlFor="Lname">Last Name</label>
               <Field
-                id="email"
-                name="email"
+                id="Lname"
+                name="Lname"
                 placeholder="eg. email@email.com"
-                style={errors.email ? { border: "2px solid red" } : {}}
+                style={errors.Lname ? { border: "2px solid red" } : {}}
               />
               {errors.email}
             </Box>
@@ -88,13 +92,7 @@ export const Register = () => {
               />
               {errors.password}
             </Box>
-            {hasSubmitted ? (
-              <Box>
-                <Link to="/forgot-password">forgot password?</Link>{" "}
-              </Box>
-            ) : (
-              <></>
-            )}
+
             <Button type="submit" isLoading={isSubmitting}>
               Submit
             </Button>
