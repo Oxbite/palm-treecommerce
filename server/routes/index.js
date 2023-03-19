@@ -7,6 +7,7 @@ const save = require('../controller/save');
 const fetch = require('../controller/fetch');
 const check = require('../controller/login')
 const del = require('../controller/delete');
+const mail = require('../controller/mail');
 // ********************************************** importing ************************************************
 
 
@@ -24,6 +25,7 @@ route.post('/register' , save.userSave);
 route.post('/saveProduct' , save.productSave);
 route.post('/saveShop' , save.shopSave);
 route.post('/saveCategory' , save.categorySave);
+route.post('/mailto' , mail.sendMail);
 
 route.get('/logout' , check.logout);
 route.get('/fetchUser' , fetch.fetchUsers );
