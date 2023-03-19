@@ -10,6 +10,7 @@ export default function App() {
   const userh1 = (user: userType) => {
     return <h1>User is {user?.userName || "Anon"}</h1>;
   };
+
   const [user, setUser] = useState<userType>(null);
   useEffect(() => {
     const api = async () => {
@@ -22,13 +23,14 @@ export default function App() {
     };
     api();
   }, []);
+
   return (
     <>
       {userh1(user)}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home userName="hello" />} />
+            <Route index element={Home(user)} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
           </Route>

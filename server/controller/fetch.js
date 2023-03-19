@@ -22,11 +22,10 @@ exports.fetchUsers = async (req, res) => {
 
 //only gets name and id of user-----------> ME FUNCTION
 exports.fetchUsersName = async (req, res) => {
-  if (session._id) {
-    return res.json({ id: session._id, userName: session.useName });
-  }
-
-  res.json({ error: "Not Logged In" });
+  console.log(req.session);
+  if (req.session.userId) {
+    return res.json({ id: req.session._id, userName: req.session.useName });
+  } else return res.json({ error: "Not Logged In" });
 };
 
 //*************************************************** USERS END ***************************************************/

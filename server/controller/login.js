@@ -1,19 +1,13 @@
 //  ************************************ importing ************************************
-const express = require("express");
-const { Schema, startSession } = require("mongoose");
-const router = express.Router();
+const { startSession } = require("mongoose");
 const dbcon = require("../controller/dbcon");
 const model = require("../model/dbModel");
-const { use } = require("../routes");
-const fetchh = require("./fetch");
 const bcrypt = require("bcrypt");
-const session = require("express-session");
 startSession();
 
 //  ************************************ importing ************************************
 
 exports.checkUser = async (req, res) => {
-  var session;
   console.log(req.body);
   const email = req.body.email;
   const password = req.body.password;
@@ -27,18 +21,18 @@ exports.checkUser = async (req, res) => {
     console.log(user);
     if (!user[0]) {
       return res.json({ error: "Email is invalid" });
-    } else if (await bcrypt.compare(password, user[0].password)) {
+    } else if (!(await bcrypt.compare(password, user[0].password))) {
       return res.json({ error: "Password is invalid" });
-    }
-    session = req.session;
-    session.userName = user[0].Fname + user[0].Lname;
-    session._id = user[0]._id;
+    } else {
+      req.session.userName = user[0].Fname + user[0].Lname;
+      req.session.userId = user[0]._id;
 
-    res.json({
-      status: "Success logging in",
-      username: session.userName,
-      id: session.id,
-    });
+      return res.json({
+        status: "Success logging in",
+        username: req.session.userName,
+        id: req.session.userId,
+      });
+    }
     // console.log(session.userName);
   } catch (error) {
     console.log(error);

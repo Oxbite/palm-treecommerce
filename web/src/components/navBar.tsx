@@ -10,12 +10,12 @@ const LogoutButton = () => {
   const submit = () => {
     setSubmitting(true);
     const api = async () => {
-      const jdata = await (
-        await fetch(SERVER_LINK + "logout", {
-          method: "GET",
-        })
-      ).json();
-      if (jdata.success) {
+      const jdata = await fetch(SERVER_LINK + "logout", {
+        method: "GET",
+      });
+
+      const json = await jdata.json();
+      if (json.success) {
         redirect("/");
       }
       setSubmitting(false);

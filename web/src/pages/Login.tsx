@@ -14,7 +14,6 @@ export const Login = () => {
   const initialValues: MyFormValues = { email: "", password: "" };
   const [hasSubmitted, setSubmitted] = useState<boolean>(false);
   const navigate = useNavigate();
-  const [loggenIn, setLoggedIn] = useState(false);
   return (
     <div>
       <h1>Login</h1>
@@ -23,6 +22,7 @@ export const Login = () => {
         onSubmit={async (values, actions) => {
           const data = await fetch("http://localhost:4000/login", {
             method: "POST",
+            credentials: "include",
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
@@ -30,10 +30,11 @@ export const Login = () => {
             body: JSON.stringify(values),
           });
           const jdata = await data.json();
+          console.log(jdata);
           if (jdata.error) {
             actions.setErrors({ email: jdata.error });
           } else {
-            navigate("/", { replace: true });
+            navigate("/", { replace: false });
           }
           setSubmitted(true);
           actions.setSubmitting(false);
