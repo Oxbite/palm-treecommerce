@@ -22,23 +22,11 @@ exports.fetchUsers = async (req, res) => {
 
 //only gets name and id of user-----------> ME FUNCTION
 exports.fetchUsersName = async (req, res) => {
-  if (!(await dbcon.connect())) {
-    console.log("terobau");
-    res.json({ error: "Server Error" });
-    return;
-  }
-  const usersObj = await model.userModel
-    .find({}, "_id Fname Lname status")
-    .populate();
-  if (!usersObj[0]) {
-    res.json({ error: "NotLoggedIn" });
-    return;
+  if (session._id) {
+    return res.json({ id: session._id, userName: session.useName });
   }
 
-  const user = usersObj[0].Fname + " " + usersObj[0].Lname;
-  const userId = usersObj[0]._id;
-  const userStatus = usersObj[0].status;
-  res.json({ id: userId, userName: user, userStatus: userStatus });
+  res.json({ error: "Not Logged In" });
 };
 
 //*************************************************** USERS END ***************************************************/

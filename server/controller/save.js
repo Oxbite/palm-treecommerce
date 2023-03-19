@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const dbcon = require("../controller/dbcon");
 
 exports.userSave = async (req, res) => {
+  console.log(req.body.password);
   try {
     const salt = await bcrypt.genSalt(10);
     password = await bcrypt.hash(req.body.password, salt);
@@ -18,7 +19,7 @@ exports.userSave = async (req, res) => {
     Lname: req.body.Lname,
     email: req.body.email,
     role: req.body.role,
-    password,
+    password: password,
   });
 
   try {

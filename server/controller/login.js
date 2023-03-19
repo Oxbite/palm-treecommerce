@@ -31,7 +31,7 @@ exports.checkUser = async (req, res) => {
       return res.json({ error: "Password is invalid" });
     }
     session = req.session;
-    session.userName = username;
+    session.userName = user[0].Fname + user[0].Lname;
     session._id = user[0]._id;
 
     res.json({

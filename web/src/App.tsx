@@ -20,10 +20,8 @@ export default function App() {
       console.log(jsonData);
       setUser(jsonData);
     };
-    if (!user) {
-      api();
-    }
-  }, [user]);
+    api();
+  }, []);
   return (
     <>
       {userh1(user)}
