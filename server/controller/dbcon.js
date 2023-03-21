@@ -1,4 +1,6 @@
 const { default: mongoose } = require("mongoose");
+require('dotenv').config();
+
 
 exports.connect = async (req, res) => {
   await mongoose.connect(
@@ -6,3 +8,9 @@ exports.connect = async (req, res) => {
   );
   return true;
 };
+
+// exports.connect = async (req, res) => {
+//   await mongoose.connect(process.env.database);
+//   console.log("hey");
+//   return true;
+// };
