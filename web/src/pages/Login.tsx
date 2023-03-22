@@ -20,7 +20,7 @@ export const Login = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, actions) => {
-          const data = await fetch("http://localhost:4000/login", {
+          const data = await fetch("/login", {
             method: "POST",
             credentials: "include",
             headers: {

@@ -14,8 +14,9 @@ export default function App() {
   const [user, setUser] = useState<userType>(null);
   useEffect(() => {
     const api = async () => {
-      const data = await fetch("http://localhost:4000/me", {
+      const data = await fetch("/me", {
         method: "GET",
+        credentials: "include",
       });
       const jsonData = await data.json();
       console.log(jsonData);
