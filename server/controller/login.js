@@ -24,7 +24,7 @@ exports.checkUser = async (req, res) => {
     } else if (!(await bcrypt.compare(password, user[0].password))) {
       return res.json({ error: "Password is invalid" });
     } else {
-      req.session.userName = user[0].Fname + user[0].Lname;
+      req.session.userName = user[0].Fname +" "+ user[0].Lname;
       req.session.userId = user[0]._id;
 
       return res.json({
