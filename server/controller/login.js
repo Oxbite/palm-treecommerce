@@ -11,7 +11,6 @@ exports.checkUser = async (req, res) => {
   console.log(req.body);
   const email = req.body.email;
   const password = req.body.password;
-
   try {
     if (!(await dbcon.connect())) {
       throw "err";
