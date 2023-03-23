@@ -20,7 +20,7 @@ exports.sendMail = (req,res)=> {
         from: 'yatra.infosys@gmail.com',
         to: 'yatrainfosys@gmail.com',
         subject: sub,
-        text: "Name: " + name + " " + text
+        text: "Name: " + name + "\n" + text
       };
 
       transporter.sendMail(message, (err, info) => {
