@@ -15,7 +15,7 @@ exports.sendMail = (req,res)=> {
       const sub = req.body.subject;
       const text = req.body.message;
       const name = req.body.name;
-      console.log(sub + " "  + text);
+      console.log(sub + " " + text);
       let message = {
         from: 'yatra.infosys@gmail.com',
         to: 'yatrainfosys@gmail.com',
