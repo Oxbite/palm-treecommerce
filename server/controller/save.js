@@ -31,7 +31,7 @@ exports.userSave = async (req, res) => {
     session._id = user._id;
 
     res.json({
-      status: "Success logging in",
+      status: "success",
       username: session.userName,
       id: session.id,
     });

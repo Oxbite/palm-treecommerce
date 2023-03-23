@@ -16,10 +16,12 @@ const user = new mongoose.Schema({
         required: true
 
     },
-    role:{
-        type: String,
-        required: true
-
+    address:{
+        type: Schema.Types.ObjectId,
+        ref: 'address'
+    },
+    cart:{
+        type: String    
     },
     password:{
         type: String,
@@ -41,6 +43,7 @@ const category = new mongoose.Schema({
     status:{
         type: String,
         required: true,
+        enum: ['active', 'inactive'],
         default: "active"
     },
 })
@@ -77,19 +80,24 @@ const product =new mongoose.Schema({
         type: String,
         required: false
     },
-    category:{
-        type: String,
-        required: true
-    },
     shopId:{
         type: Schema.Types.ObjectId,
         ref: 'Shop',
         required: true
     },
+    categoryId:{
+        type: Schema.Types.ObjectId,
+        ref: 'category',    
+        required: true
+    }
+    // },
+    // address:{ STATE CITY CONTRY 
+    //     type: String,
+    //     required: true
+    // }
 })
 
 module.exports.userModel = mongoose.model('User', user);
 module.exports.categoryModel = mongoose.model('Categories', category);
 module.exports.shopModel = mongoose.model('Shops', shop);
 module.exports.productModel = mongoose.model('Products', product);
-
