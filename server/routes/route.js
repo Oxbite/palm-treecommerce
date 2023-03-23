@@ -33,7 +33,7 @@ route.get('/me' , fetch.fetchUsersName );
 route.get('/delUser/' ,  del.deleteUser);
 route.get('/delShop/' ,  del.deleteShop);
 route.get('/delCategory/' , del.deleteCategory);
-route.get('/delProducts/' ,  del.deleteProducts);
+route.get('/delProducts/' , del.deleteProducts);
 
 
 module.exports = route;
