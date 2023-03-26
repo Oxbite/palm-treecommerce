@@ -17,7 +17,7 @@ exports.fetchUsers = async (req, res) => {
   const users = await model.userModel
     .find({}, "Fname Lname email role status")
     .populate();
-  res.json({ "all user name": users });
+  res.json({ "data": users });
 };
 
 //only gets name and id of user-----------> ME FUNCTION
@@ -45,3 +45,4 @@ exports.fetchPoducts = async (res, req) => {
   const products = await model.productModel.find({}).populate();
   res.json({ "all product data": products });
 };
+
