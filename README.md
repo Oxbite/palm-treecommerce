@@ -22,8 +22,8 @@ TODO:
   
   
   
-  **FRONT END**
-  * 
-  * 
-  *  
-    
+  **FRONT END
+    - Nav-Bar:  use fetch('/me') to check if a user is logged in. Display their username if they are. 
+    - Home Page: Use fetch('/topProduct') with params [page, limit] (set limit to 3) and display the product names (any way you want for now)
+    - Log-In Page : create a form that posts request to ('/login') to log a user in. 
+    - Register Page: create a form that posts request to ('/register') fields=[f_name, l_name, email, password, street, city, country].
