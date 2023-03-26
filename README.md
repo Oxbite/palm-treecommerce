@@ -1,5 +1,8 @@
 # palm-treecommerce
 
+
+**BACK END**
+
 TODO:
 * visitied table: saves log of user product visits
 * pagination (next page wala)
@@ -15,3 +18,12 @@ TODO:
   - productPage: photo, price, description, same category wise product (top sold)
   - checkout: payment gateway 
   - logout 
+  
+  
+  
+  
+  **FRONT END**
+  * 
+  * 
+  *  
+    
