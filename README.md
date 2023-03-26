@@ -5,7 +5,7 @@ TODO:
 * pagination (next page wala)
 
 * Routes {paginate in all pages}
-  - homePage: products: newest for 1 row, top products, category wise, fyp, featured
+  - homePage: products: LOGO FIRST THEN FEATURED PRODUCTS. newest for 1 row, top products, category wise, fyp, featured
   - Sign up table: email verification
   - Login.If user is not logged in then: buy garne bela ask info {like tavis}. if not verified ask to verify
   - forgot pass word token system.
