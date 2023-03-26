@@ -26,7 +26,7 @@ exports.checkUser = async (req, res) => {
       req.session.userId = user[0]._id;
 
       return res.json({
-        status: "Success logging in",
+        status: "success",
         username: req.session.userName,
         id: req.session.userId,
       });

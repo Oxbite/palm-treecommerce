@@ -2,11 +2,11 @@ const { default: mongoose, Schema } = require("mongoose");
 
 
 const user = new mongoose.Schema({
-    Fname: {
+    f_name: {
         type:  String,
         required: true
     },
-    Lname:{
+    l_name:{
         type: String,
         required: true
 
@@ -33,7 +33,7 @@ const user = new mongoose.Schema({
         required: true,
         default: "inactive"
     }
-})
+}, {timestamps: true})
 
 const category = new mongoose.Schema({
     name:{
@@ -63,6 +63,41 @@ const shop = new mongoose.Schema({
     }
 })
 
+const views = new mongoose.Schema({
+    product:{
+        type: Schema.Types.ObjectId,
+        ref: 'product',
+        required: true
+    },
+    type: {
+        type: String,
+        required: true,
+        default: 'direct'
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+        required: false
+    }
+}, {timestamps: true})
+
+const orders = new mongoose.Schema({
+    product: {
+        type: [Schema.Types.ObjectId],
+        ref: 'product',
+        required: true
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+    },
+    address: {
+        type: String,
+        required: true
+    },
+
+}, {timestamps:true})
+
 const product =new mongoose.Schema({
     name:{
         type: String,
@@ -89,6 +124,14 @@ const product =new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'category',    
         required: true
+    },
+    order_number: {
+        type: Number,
+        default: 0
+    },
+    featured: {
+        type: Boolean,
+        default: false
     }
     // },
     // address:{ STATE CITY CONTRY 
@@ -96,6 +139,19 @@ const product =new mongoose.Schema({
     //     required: true
     // }
 })
+
+const search_logs = new mongoose.Schema({
+    query: {
+        type: String,
+        required : true
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+        required: false
+    }
+}, {timestamps:true})
+
 
 module.exports.userModel = mongoose.model('User', user);
 module.exports.categoryModel = mongoose.model('Categories', category);

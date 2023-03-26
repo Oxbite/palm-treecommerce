@@ -8,6 +8,8 @@ const fetch = require('../controller/fetch');
 const check = require('../controller/login')
 const del = require('../controller/delete');
 const mail = require('../controller/mail');
+const product = require('../controller/product')
+
 // ********************************************** importing ************************************************
 
 
@@ -34,6 +36,10 @@ route.get('/delUser/' ,  del.deleteUser);
 route.get('/delShop/' ,  del.deleteShop);
 route.get('/delCategory/' , del.deleteCategory);
 route.get('/delProducts/' , del.deleteProducts);
+
+route.get('/topProduct', product.topProducts);
+route.get('/similarProduct/:categoryId', product.similarProducts);
+route.get('/category', product.category);
 
 
 module.exports = route;
