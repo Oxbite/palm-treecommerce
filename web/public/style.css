@@ -1,13 +1,13 @@
 
 #root{
     background-color: #e7e7e7;
-
+    font-family: Nunito;
 }
 
 /* xxxxxxxxxxxxxxxxxxxxxxx NAV BAR xxxxxxxxxxxxxxxxxxxxxxx */
 
 .navPage{
-    /* height: 100vh; */
+    height: fit-content;
     width: 100vh;
     
 }
@@ -19,14 +19,14 @@
 nav{
     /* z-index: 1; */
     background-color: white;
-    position: absolute;
+    position: fixed;
     width: 100vw;
     align-items: center;
     justify-content: space-between;
     display: flex;
     text-decoration: none;
-    /* padding:auto; */
 }
+
 
 .navLink {
     margin: 10px;
@@ -34,52 +34,118 @@ nav{
     text-decoration: none;
 }
 
+.navLink:hover {
+    color: #582932;
+    font-weight: bolder;
+}
+
+.active{
+    color: #582932;
+    font-weight: bolder;
+}
+
+
 .logo{
     color: rgb(0, 0, 0);
-    margin-left: 2%;
+    padding-left: 2%;
+    font-family: ocr;
+    font-size: 35px;
+
 }
 
 /* xxxxxxxxxxxxxxxxxxxxxxx HOME xxxxxxxxxxxxxxxxxxxxxxx */
 
 .homePage{
     height: 100vh;
-    width: 100vh;
-    margin-top: 10%;
-
-    /* margin: 0;
-    padding: 0; */
+    width: 100%;
+    padding-top: 0%;
 }
 
 .cont{
-    margin: auto;
-
-    justify-content: center;
-    text-align: center;
-    /* display: grid; */
-    display: flex;
-    /* grid-template-columns: auto auto auto; */
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 45% 10% 45% ;
 }
 
 .tagLine{
-    /* position: relative; */
-    /* top: 200px; */
-    justify-content: center;
+    margin: auto;
     font-size: 30px;
-    /* margin-top: 200px; */
+}
+
+.tagLine > h1:nth-child(2){
+    color: #582932;
+}
+
+.btn:hover{
+    background-color: #582932;
+    color: white;
+}
+
+.btn{
+    position: relative;
+    cursor: pointer;
+    top: 70px;
+    border-radius: 10px;
+    box-shadow:  3px 4px 4px 1px #696666;
+    border: none;
+    box-shadow: inset;
+    margin: auto;
+    font-size: 25px;
+    padding: 10px;
+    
 }
 
 .image{
-    /* position: relative; */
-    /* top: 200px;. */
-    /* left: 30px; */
-    height: 80%;
-    background-color: rgb(90, 33, 33);
+    height: 100vh;
+    padding-top: 100%;
+    background-color: #582932;
 }
 
-.slider{
-    position: relative;
-    top: 200px;
-    left: 30px;
-    float: right;
+.image > object{
+   width: 95%;
+   height: 100vh;
+}
 
+.imgSlider{
+    padding-top: 100px;
+    margin: auto;
+}
+
+.imgSlider > object{
+    width: 100px;
+    height: 100vh;
+}
+
+.rightBtn{
+    margin: auto;
+    height: 50px;
+    width: 50px;
+    transition: 0.3s;
+
+}
+
+.leftBtn:hover {
+    height: 60px;
+    width: 60px;
+}
+
+.rightBtn:hover {
+    height: 60px;
+    width: 60px;
+}
+
+.leftBtn {
+    transition: 0.3s;
+    margin: auto;
+    height: 50px;
+    width: 50px;
+    transform: rotate(180deg);
+    /* background-color: red; */
+}
+
+
+.slider{
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: auto auto auto;
 }

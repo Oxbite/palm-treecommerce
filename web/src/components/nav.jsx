@@ -12,15 +12,15 @@ return(
   <div className="navPage">
         <nav>
             <div className="logo">
-                <p>pika</p>
+                <p>YATRA</p>
             </div>
             <div className="elements">
               <ul>
-                <Link to='main'smooth={true} duration={1000} className='navLink'>Home</Link>
-                <Link to='about' smooth={true} duration={1000} className='navLink'>Products</Link>
-                <Link to='websiteplan' smooth={true} duration={1000} className='navLink'>Contact</Link>
-                <Link to='faq' smooth={true} duration={1000} className='navLink'>About</Link>
-                <Link to='contact' smooth={true} duration={1000} className='navLink'>Login</Link>
+                <Link to='home'smooth={true} duration={1000} className='navLink active'>Home</Link>
+                <Link to='products' smooth={true} duration={1000} className='navLink'>Products</Link>
+                <Link to='contact' smooth={true} duration={1000} className='navLink'>Contact</Link>
+                <Link to='about' smooth={true} duration={1000} className='navLink'>About</Link>
+                <Link to='login' smooth={true} duration={1000} className='navLink'>Login</Link>
               </ul>
             </div>
         </nav>
