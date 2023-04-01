@@ -15,8 +15,8 @@ exports.userSave = async (req, res) => {
     });
   }
   const users = new dbModel.userModel({
-    Fname: req.body.Fname,
-    Lname: req.body.Lname,
+    f_name: req.body.f_name,
+    l_name: req.body.l_name,
     email: req.body.email,
     role: req.body.role,
     password: password,
@@ -27,7 +27,7 @@ exports.userSave = async (req, res) => {
     const user = await users.save();
     console.log("user saving success!");
     session = req.session;
-    session.userName = req.body.Fname + " " + req.body.Lname;
+    session.userName = req.body.f_name + " " + req.body.l_name;
     session._id = user._id;
 
     res.json({
