@@ -1,0 +1,151 @@
+
+#root{
+    background-color: #e7e7e7;
+    font-family: Nunito;
+}
+
+/* xxxxxxxxxxxxxxxxxxxxxxx NAV BAR xxxxxxxxxxxxxxxxxxxxxxx */
+
+.navPage{
+    height: fit-content;
+    width: 100vh;
+    
+}
+
+.elements{
+    padding: 1%;
+}
+
+nav{
+    /* z-index: 1; */
+    background-color: white;
+    position: fixed;
+    width: 100vw;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    text-decoration: none;
+}
+
+
+.navLink {
+    margin: 10px;
+    color: black;
+    text-decoration: none;
+}
+
+.navLink:hover {
+    color: #582932;
+    font-weight: bolder;
+}
+
+.active{
+    color: #582932;
+    font-weight: bolder;
+}
+
+
+.logo{
+    color: rgb(0, 0, 0);
+    padding-left: 2%;
+    font-family: ocr;
+    font-size: 35px;
+
+}
+
+/* xxxxxxxxxxxxxxxxxxxxxxx HOME xxxxxxxxxxxxxxxxxxxxxxx */
+
+.homePage{
+    height: 100vh;
+    width: 100%;
+    padding-top: 0%;
+}
+
+.cont{
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 45% 10% 45% ;
+}
+
+.tagLine{
+    margin: auto;
+    font-size: 30px;
+}
+
+.tagLine > h1:nth-child(2){
+    color: #582932;
+}
+
+.btn:hover{
+    background-color: #582932;
+    color: white;
+}
+
+.btn{
+    position: relative;
+    cursor: pointer;
+    top: 70px;
+    border-radius: 10px;
+    box-shadow:  3px 4px 4px 1px #696666;
+    border: none;
+    box-shadow: inset;
+    margin: auto;
+    font-size: 25px;
+    padding: 10px;
+    
+}
+
+.image{
+    height: 100vh;
+    padding-top: 100%;
+    background-color: #582932;
+}
+
+.image > object{
+   width: 95%;
+   height: 100vh;
+}
+
+.imgSlider{
+    padding-top: 100px;
+    margin: auto;
+}
+
+.imgSlider > object{
+    width: 100px;
+    height: 100vh;
+}
+
+.rightBtn{
+    margin: auto;
+    height: 50px;
+    width: 50px;
+    transition: 0.3s;
+
+}
+
+.leftBtn:hover {
+    height: 60px;
+    width: 60px;
+}
+
+.rightBtn:hover {
+    height: 60px;
+    width: 60px;
+}
+
+.leftBtn {
+    transition: 0.3s;
+    margin: auto;
+    height: 50px;
+    width: 50px;
+    transform: rotate(180deg);
+    /* background-color: red; */
+}
+
+
+.slider{
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
