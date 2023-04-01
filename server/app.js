@@ -40,6 +40,8 @@ app.use(
   })
 );
 app.use(cookieParser());
+require("dotenv").config();
+if (process.env.__PROD__ == 1) app.use("/test", require("./tests/testRoutes"));
 
 // routing toindex page
 app.use(index);

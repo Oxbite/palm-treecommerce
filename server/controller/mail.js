@@ -172,7 +172,10 @@ exports.reset_password = async (req, res) => {
       if (!(await dbcon.connect())) {
         throw "database connection error";
       }
-
+      const salt = await bcrypt.genSalt(10);
+      const password = await bcrypt.hash(req.body.password, salt);
+      await model.userModel.findByIdAndUpdate(stored.user._id, { password });
+      await model.token.findByIdAndDelete(stored._id);
       res.json({ status: "success" });
     } else {
       res.json({ status: "error", error: "invalid token" });

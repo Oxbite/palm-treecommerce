@@ -26,6 +26,7 @@ route.post("/register", save.userSave);
 route.post("/addProduct", save.productSave);
 route.post("/addCategory", save.categorySave);
 route.post("/mailto", mail.sendMail);
+route.post("/reset-password", mail.reset_password);
 
 route.get("/logout", check.logout);
 route.get("/fetchUser", fetch.fetchUsers);
@@ -39,5 +40,9 @@ route.get("/product", product.product);
 route.get("/topProduct", product.topProducts);
 route.get("/similarProduct/:categoryId", product.similarProducts);
 route.get("/category", product.category);
+route.get("/verification-email", mail.emailVerifySend);
+route.get("/verify-email", mail.verifyEmail);
+route.get("/forgot-password", mail.forgot_password);
+route.get("/check-token", mail.forgot_password);
 
 module.exports = route;

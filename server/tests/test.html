@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+const link = 'http://localhost:4000/';
+
+const users = [
+    {
+        email: "inishedh@gmail.com",
+        password: "password",
+        f_name: "nishedh",
+        l_name: "karki",
+        street: "my-street",
+        city: "my-city",
+        country: "my-country"
+    },
+    {
+        email: "hello",
+        password: "password",
+        f_name: "test1",
+        l_name: "test2",
+        street: "my-street",
+        city: "my-city",
+        country: "my-country"
+    }
+]
+
+function register() {
+    fetch(link+'register', {
+        method: "POST",
+        credentials: "include",
+        "Content-Type": "application/json",
+        body: users[0]
+    })
+}
+
+function login() {
+
+}
+
+function putProducts() {
+    for(let i=0; i < 50; i++) {
+
+    }
+}
+
+
+
+
+</script>
+
+
+</html>
