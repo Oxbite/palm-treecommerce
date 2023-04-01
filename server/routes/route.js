@@ -21,15 +21,32 @@ const product = require("../controller/product");
 //     res.json({"id":e});
 // });
 
-route.post("/login", check.checkUser);
-route.post("/register", save.userSave);
+const loginRequired = async (req, res) => {
+  if (session.userId) {
+    next();
+  } else {
+    res.json({ status: "error", error: "login required" });
+  }
+};
+
+const loginFrowned = async (req, res) => {
+  if (!session.userId) {
+    next();
+  } else {
+    res.json({ status: "error", error: "a user is already logged in" });
+  }
+};
+
+route.post("/login", loginFrowned, check.checkUser);
+route.post("/register", loginFrowned, save.userSave);
+route.post("/reset-password", loginFrowned, mail.reset_password);
+
 route.post("/addProduct", save.productSave);
 route.post("/addCategory", save.categorySave);
 route.post("/mailto", mail.sendMail);
-route.post("/reset-password", mail.reset_password);
 
-route.get("/logout", check.logout);
-route.get("/fetchUser", fetch.fetchUsers);
+route.get("/logout", loginRequired, check.logout);
+route.get("/fetchUser", loginRequired, fetch.fetchUsers);
 route.get("/me", fetch.fetchUsersName);
 route.get("/delUser/", del.deleteUser);
 route.get("/delCategory/", del.deleteCategory);
@@ -40,9 +57,9 @@ route.get("/product", product.product);
 route.get("/topProduct", product.topProducts);
 route.get("/similarProduct/:categoryId", product.similarProducts);
 route.get("/category", product.category);
-route.get("/verification-email", mail.emailVerifySend);
-route.get("/verify-email", mail.verifyEmail);
-route.get("/forgot-password", mail.forgot_password);
-route.get("/check-token", mail.forgot_password);
+route.get("/verification-email", loginRequired, mail.emailVerifySend);
+route.get("/verify-email", loginRequired, mail.verifyEmail);
+route.get("/forgot-password", loginFrowned, mail.forgot_password);
+route.get("/check-token", loginFrowned, mail.forgot_password);
 
 module.exports = route;
