@@ -179,6 +179,26 @@ const cart = new mongoose.Schema(
   { timestamps: true }
 );
 
+const userTokens = new mongoose.Schema(
+  {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
+    token: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    token_type: {
+      type: Number,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
+
 module.exports.userModel = mongoose.model("User", user);
 module.exports.categoryModel = mongoose.model("Categories", category);
 module.exports.shopModel = mongoose.model("Shops", shop);
