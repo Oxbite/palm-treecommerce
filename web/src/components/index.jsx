@@ -26,22 +26,30 @@ export default function Home(){
                 </div>
                 <div className='slider'>
                 <Swiper className='swiper_container'
-                            modules={[Navigation, Pagination]}
-                            slidesPerView={1}
-                            navigation
-                            pagination={{ clickable: true }}
-                            scrollbar={{ draggable: true }}
-                        >
-                            {seasons.map((season)=>{
-                                return(
-                                    <SwiperSlide>
-                                    <div className='imgSlider'>
-                                        <object type="image/svg+xml" aria-label="pcImage" data={season}></object>
-                                    </div>
-                                    </SwiperSlide>
-                                )
-                            })}
-                        </Swiper>
+                    style={{
+                        "--swiper-pagination-color": "#582932",
+                        "--swiper-pagination-bullet-inactive-color": "#999999",
+                        "--swiper-pagination-bullet-inactive-opacity": "1",
+                        "--swiper-pagination-bullet-size": "12px",
+                        "--swiper-pagination-bullet-horizontal-gap": "4px",
+                        "--swiper-pagination-bottom": "170px"
+                    }}
+                    modules={[Navigation, Pagination]}
+                    slidesPerView={1}
+                    navigation
+                    pagination={{ clickable: true }}
+                    scrollbar={{ draggable: true }}
+                >
+                    {seasons.map((season)=>{
+                        return(
+                            <SwiperSlide>
+                            <div className='imgSlider'>
+                                <object type="image/svg+xml" aria-label="pcImage" data={season} height={200} width={100}></object>
+                            </div>
+                            </SwiperSlide>
+                        )
+                    })}
+                </Swiper>
                 </div>
                
             </div>
