@@ -1,35 +1,33 @@
 const nodemailer = require("nodemailer");
-require('dotenv').config();
+require("dotenv").config();
 
+sendMail = (subject, message) => {
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "yatrainfosys@gmail.com",
+      pass: process.env.pass,
+    },
+  });
 
-exports.sendMail = (req,res)=> {
-    
-    let transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'yatrainfosys@gmail.com',
-            pass: process.env.pass
-        }
-      });
+  const sub = subject;
+  const text = message;
+  console.log(sub + " " + text);
+  let message = {
+    from: "yatra.infosys@gmail.com",
+    to: "yatrainfosys@gmail.com",
+    subject: sub,
+    text: text,
+  };
 
-      const sub = req.body.subject;
-      const text = req.body.message;
-      const name = req.body.name;
-      console.log(sub + " " + text);
-      let message = {
-        from: 'yatra.infosys@gmail.com',
-        to: 'yatrainfosys@gmail.com',
-        subject: sub,
-        text: "Name: " + name + "\n" + text
-      };
+  transporter.sendMail(message, (err, info) => {
+    if (err) {
+      console.error(err);
+      res.json({ error: "Server error, please try again later" });
+    } else {
+      console.log(info.response);
+    }
+  });
+};
 
-      transporter.sendMail(message, (err, info) => {
-        if (err) {
-          console.error(err);
-          res.json({"error": "Server error, please try again later"});
-        } else {
-          console.log(info.response);
-        }
-      });
-
-}
+exports.emailVerifySend = (req, res) => {};
