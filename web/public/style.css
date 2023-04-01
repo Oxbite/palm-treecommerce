@@ -108,7 +108,7 @@ nav{
 
 .imgSlider{
     padding-top: 100px;
-    margin: auto;
+    /* margin: auto; */
 }
 
 .imgSlider > object{
@@ -145,7 +145,5 @@ nav{
 
 
 .slider{
-    /* display: flex; */
-    display: grid;
-    grid-template-columns: auto auto auto;
+    display: flex;
 }
