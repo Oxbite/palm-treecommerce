@@ -50,8 +50,6 @@ exports.featured = async (req, res) => {
       throw "Couldn't connect to db";
     }
 
-    const { page, limit } = req.query;
-
     const products = await product.find({ featured: true }).populate();
     res.json({ products });
   } catch (err) {

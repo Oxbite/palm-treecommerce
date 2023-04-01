@@ -1,7 +1,11 @@
 const nodemailer = require("nodemailer");
+const session = require("express-session");
 require("dotenv").config();
 
-sendMail = (subject, message) => {
+const dbcon = require("../controller/dbcon");
+const model = require("../model/dbModel");
+
+sendMail = (subject, message, cb) => {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -23,11 +27,54 @@ sendMail = (subject, message) => {
   transporter.sendMail(message, (err, info) => {
     if (err) {
       console.error(err);
-      res.json({ error: "Server error, please try again later" });
+      cb.err();
     } else {
-      console.log(info.response);
+      cb.success();
     }
   });
 };
 
-exports.emailVerifySend = (req, res) => {};
+exports.emailVerifySend = async (req, res) => {
+  const buffer = require("crypto").randomBytes(48);
+  const token = buffer.toString("hex");
+  const user = req.session.userId;
+
+  sendMail(
+    "Your Email Verification link for Palm-treecommerce",
+    "http:://localhost:4000/verifyEmail/" + user + "-" + token,
+    {
+      success: () => {
+        req.session.token = token;
+        res.json({ status: "success" });
+      },
+      err: () => {
+        res.json({
+          status: "error",
+          error: "server error while sending email",
+        });
+      },
+    }
+  );
+};
+
+exports.verifyEmail = async (req, res) => {
+  try {
+    const token = req.query.token;
+    if (req.session.userId + "-" + req.session.token === token) {
+      if (!(await dbcon.connect())) {
+        throw "err";
+      }
+      req.session.status = "verified";
+      model.userModel.findByIdAndUpdate(req.session.userId, {
+        status: "email verified on " + Date.now(),
+      });
+      res.send(
+        "<h1>Your Email has been successfully verified! </h1> continue on http://localhost:3000/"
+      );
+    } else {
+      res.json({ status: "error", error: "invalid token" });
+    }
+  } catch {
+    req.json({ status: "error", error: "Server Error" });
+  }
+};

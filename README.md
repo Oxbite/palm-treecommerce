@@ -25,8 +25,10 @@ TODO:
   - /delProducts deletes a product by admin.
 
   - /topProduct -- params: {page, limit} returns array of top products
-  - /similarProduct/:categoryId returns array of products in same category
-  - /category params: {page, limit, categoryId}
+  - /similarProduct/:categoryId returns array of products in same category without pagination
+  - /category params: {page, limit, categoryId} // returns array of product in category with pagination
+  - /product params: { productId }
+  - /new params {page, limit} returns the newest product.
 
   \*\*FRONT END
 
