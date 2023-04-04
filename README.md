@@ -14,6 +14,7 @@ TODO:
   - POST /register BODY {email, name, street, city, country, password}
   - POST /addProduct Body {name, price, discount, categoryId, order_number}
   - POST /addCategory Body{name}
+  - /forgot-password params{token}, Body {password}
 
   * Get
 
@@ -29,6 +30,8 @@ TODO:
   - /category params: {page, limit, categoryId} // returns array of product in category with pagination
   - /product params: { productId }
   - /new params {page, limit} returns the newest product.
+  - /check-token params{token}
+  - /forgot-password params{email}
 
   \*\*FRONT END
 
