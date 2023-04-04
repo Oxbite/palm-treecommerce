@@ -107,13 +107,11 @@ nav{
 }
 
 .imgSlider{
-    z-index: 2;
-    /* padding-top: 100px; */
     margin: auto;
 }
 
 .imgSlider > object{
-    width: 100px;
+    width: 0px;
     height: 100vh;
 }
 
