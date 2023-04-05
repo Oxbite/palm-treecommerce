@@ -154,22 +154,18 @@ const search_logs = new mongoose.Schema(
   { timestamps: true }
 );
 
-const product_amount = new mongoose.Schema({
-  product: {
-    type: Schema.Types.ObjectId,
-    ref: "product",
-    required: false,
-  },
-  amount: {
-    type: Number,
-    required: true,
-    default: 1,
-  },
-});
-
 const cart = new mongoose.Schema(
   {
-    product: [product_amount],
+    amount: {
+      type: Number,
+      required: true,
+      default: 1,
+    },
+    product: {
+      type: Schema.Types.ObjectId,
+      ref: "product",
+      required: true,
+    },
     user: {
       type: Schema.Types.ObjectId,
       ref: "user",

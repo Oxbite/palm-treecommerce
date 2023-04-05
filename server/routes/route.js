@@ -9,6 +9,7 @@ const check = require("../controller/login");
 const del = require("../controller/delete");
 const mail = require("../controller/mail");
 const product = require("../controller/product");
+const cart = require("../controller/cart");
 
 // ********************************************** importing ************************************************
 
@@ -43,7 +44,7 @@ route.post("/reset-password", loginFrowned, mail.reset_password);
 
 route.post("/addProduct", save.productSave);
 route.post("/addCategory", save.categorySave);
-route.post("/mailto", mail.sendMail);
+// route.post("/mailto", mail.sendMail);
 
 route.get("/logout", loginRequired, check.logout);
 route.get("/fetchUser", loginRequired, fetch.fetchUsers);
@@ -62,4 +63,5 @@ route.get("/verify-email", loginRequired, mail.verifyEmail);
 route.get("/forgot-password", loginFrowned, mail.forgot_password);
 route.get("/check-token", loginFrowned, mail.forgot_password);
 
+route.get("/cart", cart.items);
 module.exports = route;
