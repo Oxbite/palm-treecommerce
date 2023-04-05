@@ -43,6 +43,47 @@ exports.userSave = async (req, res) => {
   }
 };
 
+exports.adminSave = async (req, res) => {
+  console.log(req.body.password);
+  try {
+    const salt = await bcrypt.genSalt(10);
+    password = await bcrypt.hash(req.body.password, salt);
+  } catch {
+    return res.json({
+      error: "Hashing the password failed. Please Try again!",
+    });
+  }
+  const users = new dbModel.userModel({
+    f_name: req.body.f_name,
+    l_name: req.body.l_name,
+    email: req.body.email,
+    role: req.body.role,
+    password: password,
+    admin: true,
+  });
+
+  try {
+    await dbcon.connect();
+    const user = await users.save();
+    console.log("user saving success!");
+    session = req.session;
+    session.userName = req.body.f_name + " " + req.body.l_name;
+    session._id = user._id;
+    session.admin = false;
+
+    res.json({
+      status: "success",
+      username: session.userName,
+      id: session.id,
+    });
+  } catch (err) {
+    console.log("eror adding: " + err);
+    res.json({
+      error: "Errors have been occuring since the development, just ignore",
+    });
+  }
+};
+
 exports.categorySave = async (req, res) => {
   dbcon.connect();
   const categories = new dbModel.categoryModel({

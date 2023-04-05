@@ -30,6 +30,14 @@ const loginRequired = async (req, res) => {
   }
 };
 
+const adminRequired = async (req, res) => {
+  if (session.admin && session.admin == true) {
+    next();
+  } else {
+    res.json({ status: "error", error: "access denied" });
+  }
+};
+
 const loginFrowned = async (req, res) => {
   if (!session.userId) {
     next();
@@ -42,8 +50,9 @@ route.post("/login", loginFrowned, check.checkUser);
 route.post("/register", loginFrowned, save.userSave);
 route.post("/reset-password", loginFrowned, mail.reset_password);
 
-route.post("/addProduct", save.productSave);
-route.post("/addCategory", save.categorySave);
+route.post("/addProduct", adminRequired, save.productSave);
+route.post("/addCategory", adminRequired, save.categorySave);
+route.post("/addAdmin", adminRequired, save.userSave);
 // route.post("/mailto", mail.sendMail);
 
 route.get("/logout", loginRequired, check.logout);

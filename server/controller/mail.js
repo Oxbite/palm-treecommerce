@@ -19,7 +19,7 @@ sendMail = (to, subject, message, cb) => {
   console.log(sub + " " + text);
   let m = {
     from: "yatra.infosys@gmail.com",
-    to: "yatrainfosys@gmail.com",
+    to: to,
     subject: sub,
     text: text,
   };

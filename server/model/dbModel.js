@@ -30,6 +30,11 @@ const user = new mongoose.Schema(
       required: true,
       default: "inactive",
     },
+    admin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   { timestamps: true }
 );
