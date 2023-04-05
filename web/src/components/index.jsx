@@ -32,7 +32,7 @@ export default function Home(){
                         "--swiper-pagination-bullet-inactive-opacity": "1",
                         "--swiper-pagination-bullet-size": "12px",
                         "--swiper-pagination-bullet-horizontal-gap": "4px",
-                        "--swiper-pagination-bottom": "170px"
+                        "--swiper-pagination-bottom": "20%"
                     }}
                     modules={[Navigation, Pagination]}
                     slidesPerView={1}
@@ -44,7 +44,7 @@ export default function Home(){
                         return(
                             <SwiperSlide>
                             <div className='imgSlider'>
-                                <object type="image/svg+xml" aria-label="pcImage" data={season} height={200} width={100}></object>
+                                <object type="image/svg+xml" aria-label="pcImage" data={season} ></object>
                             </div>
                             </SwiperSlide>
                         )
