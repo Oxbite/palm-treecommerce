@@ -7,9 +7,11 @@ import { useEffect, useState } from "react";
 
 const ProductList = () => {
   const [products, setProducts] = useState<productType[]>([]);
+  const [isLoading, setLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   let maxSize = 0;
   useEffect(() => {
+    setLoading(true);
     const api = async () => {
       const data = await fetch(
         "http://localhost:4000/products?page=" + page + "&limit=20",
@@ -19,21 +21,37 @@ const ProductList = () => {
         }
       );
       const jsonData = await data.json();
-      console.log(jsonData.products);
+      console.log(jsonData);
       if (jsonData.error) {
       } else {
         maxSize = jsonData.maxSize;
         setProducts(jsonData.products);
       }
+      setLoading(false);
     };
     api();
   }, []);
 
   return (
     <>
+      {isLoading ? <div className="loader"></div> : <></>}
       <Crud data={products} heads={["name"]} />
-      <button>Next</button>
-      <button>Prev</button>
+      <button
+        disabled={page > maxSize / 20}
+        onClick={() => {
+          if (page < maxSize / 20) setPage(page + 1);
+        }}
+      >
+        Next
+      </button>
+      <button
+        disabled={page == 1}
+        onClick={() => {
+          if (page > 1) setPage(page - 1);
+        }}
+      >
+        Prev
+      </button>
     </>
   );
 };

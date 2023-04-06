@@ -16,7 +16,9 @@ exports.topProducts = async (req, res) => {
       .limit(limit)
       .skip(limit * (page - 1))
       .populate();
-    res.json({ products, maxSize: await product.count() });
+    const count = await product.count();
+    console.log(count);
+    res.json({ products, maxSize: 30 });
   } catch (err) {
     console.log(err);
     res.json({ error: "server error please try again" });
@@ -108,7 +110,7 @@ exports.new = async (req, res) => {
       .limit(limit)
       .skip(limit * (page - 1))
       .populate();
-    res.json({ products, maxSize: product.estimatedDocumentCount() });
+    res.json({ products, maxSize: await product.estimatedDocumentCount() });
   } catch (err) {
     console.log(err);
     res.json({ error: "server error please try again" });
