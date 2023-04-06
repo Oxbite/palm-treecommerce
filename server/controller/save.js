@@ -89,17 +89,18 @@ exports.categorySave = async (req, res) => {
     if (!(await dbcon.connect())) throw "error connecting to db";
     const categories = new dbModel.categoryModel({
       name: req.body.name,
-      status: req.body.status || "Inactive",
+      status: req.body.status || "active",
     });
     const category = await categories.save();
+    res.json({ status: "success", category });
     console.log("category saving success!");
   } catch (err) {
     console.log("eror adding: " + err);
     res.json({
+      status: "error",
       error: "error has be occuring since the development, just ignore",
     });
   }
-  mongoose.connection.close();
 };
 
 exports.productSave = async (req, res) => {
@@ -116,10 +117,12 @@ exports.productSave = async (req, res) => {
   try {
     const product = await products.save();
     console.log("product saving success!");
+    res.json({ status: "success", product });
     disconnect.connection.close();
   } catch (err) {
     console.log("eror adding: " + err);
     res.json({
+      status: "error",
       error: "error has be occuring since the development, just ignore",
     });
   }

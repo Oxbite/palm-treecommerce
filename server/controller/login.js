@@ -26,6 +26,7 @@ exports.checkUser = async (req, res) => {
       req.session.userName = user.f_name + " " + user.l_name;
       req.session.userId = user._id;
       req.session.email = user.email;
+      req.session.admin = user.admin;
       return res.json({
         status: "success",
         username: req.session.userName,
