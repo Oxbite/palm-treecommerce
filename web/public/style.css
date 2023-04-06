@@ -164,3 +164,29 @@ nav{
 .slider{
     display: flex;
 }
+
+
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX home page XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+
+.categories, .newProducts {
+    display: flex;
+    /* margin: auto; */
+    justify-content: center;
+    /* background-color: azure; */
+}
+.cate1, .productBox{
+    background-color: azure;
+    margin: 2%;
+    border-style: solid;
+    border: black 1px 1px;
+}
+
+.productBox{
+    background-color: azure;
+    padding: 10px;
+}
+
+.productBox > object{
+    height: 100px;
+    width: 100px;
+}
