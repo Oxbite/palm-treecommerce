@@ -22,24 +22,24 @@ const cart = require("../controller/cart");
 //     res.json({"id":e});
 // });
 
-const loginRequired = async (req, res) => {
-  if (session.userId) {
+const loginRequired = async (req, res, next) => {
+  if (req.session.userId) {
     next();
   } else {
     res.json({ status: "error", error: "login required" });
   }
 };
 
-const adminRequired = async (req, res) => {
-  if (session.admin && session.admin == true) {
+const adminRequired = async (req, res, next) => {
+  if (req.session.admin && req.session.admin == true) {
     next();
   } else {
     res.json({ status: "error", error: "access denied" });
   }
 };
 
-const loginFrowned = async (req, res) => {
-  if (!session.userId) {
+const loginFrowned = async (req, res, next) => {
+  if (!req.session.userId) {
     next();
   } else {
     res.json({ status: "error", error: "a user is already logged in" });
