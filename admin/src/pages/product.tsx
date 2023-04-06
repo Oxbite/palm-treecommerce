@@ -21,7 +21,9 @@ export default function Home() {
   return (
     <>
       <Header title={"Home"} />
-      <Container element={<ProductsPage />} />
+      <Container>
+        <ProductsPage />
+      </Container>
     </>
   );
 }

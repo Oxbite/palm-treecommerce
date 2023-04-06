@@ -67,6 +67,7 @@ route.get("/product", product.product);
 route.get("/topProduct", product.topProducts);
 route.get("/similarProduct/:categoryId", product.similarProducts);
 route.get("/category", product.category);
+route.get("/categories", fetch.fetchCategory);
 route.get("/verification-email", loginRequired, mail.emailVerifySend);
 route.get("/verify-email", loginRequired, mail.verifyEmail);
 route.get("/forgot-password", loginFrowned, mail.forgot_password);
