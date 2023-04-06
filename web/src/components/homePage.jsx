@@ -44,6 +44,7 @@ export default function homePage(){
                   
         </div>
         <div className="products"> </div>
+        
         </div>
     )
 }
