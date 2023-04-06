@@ -1,3 +1,4 @@
+import Crud from "@/Components/crudTable";
 import Header from "@/Components/head";
 import Container from "@/Components/main";
 import { categoryType, meType, productType } from "@/types/metype";
@@ -13,6 +14,7 @@ const CategoryAdd = () => {
   const router = useRouter();
   return (
     <>
+      <h1>Add Category</h1>
       <div>
         <input
           type="text"
@@ -57,6 +59,32 @@ const CategoryAdd = () => {
   );
 };
 
+const CategoryList = () => {
+  const [categories, setCategory] = useState<categoryType[]>([]);
+  useEffect(() => {
+    const api = async () => {
+      const data = await fetch("http://localhost:4000/categories", {
+        method: "GET",
+        credentials: "include",
+      });
+      const jsonData = await data.json();
+      console.log(jsonData);
+      if (jsonData.error) {
+      } else {
+        setCategory(jsonData.categories);
+      }
+    };
+    api();
+  }, []);
+
+  return (
+    <>
+      <h1>Category list</h1>
+      <Crud data={categories} heads={["name"]} />
+    </>
+  );
+};
+
 export default function Home() {
   const router = useRouter();
   const [user, setUser] = useState<meType>(null);
@@ -85,6 +113,7 @@ export default function Home() {
       <Container>
         <h1> Admin Space {user.email} </h1>
         <CategoryAdd />
+        <CategoryList />
       </Container>
     </>
   );
