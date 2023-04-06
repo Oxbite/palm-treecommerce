@@ -2,34 +2,13 @@ import { meType } from "@/types/metype";
 import { Main } from "next/document";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Children } from "react";
 
 type mainType = {
-  element: JSX.Element;
+  children: React.ReactNode;
 };
 
-export default function Container({ element }: mainType) {
-  const router = useRouter();
-  const [user, setUser] = useState<meType>(null);
-  useEffect(() => {
-    const api = async () => {
-      const data = await fetch("http://localhost:4000/me", {
-        method: "GET",
-        credentials: "include",
-      });
-      const jsonData = await data.json();
-      console.log(jsonData);
-      if (jsonData.error) {
-        router.push("/login");
-      } else {
-        setUser(jsonData);
-      }
-    };
-    api();
-  }, []);
-  if (!user) {
-    return <></>;
-  }
+export default function Container({ children }: mainType) {
   return (
     <>
       <div>
@@ -37,7 +16,7 @@ export default function Container({ element }: mainType) {
           <Link href={"/product"}>Products</Link>
           <Link href={"/category"}>Categories</Link>
         </nav>
-        <main>{element}</main>
+        <main>{children}</main>
       </div>
     </>
   );

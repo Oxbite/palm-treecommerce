@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 type loginValue = {
@@ -6,12 +7,13 @@ type loginValue = {
 };
 
 type loginProps = {
-  redirect: string;
+  redirect?: string;
 };
 
-export default function Login({ redirect = "asdf" }: loginProps) {
+export default function Login({ redirect = "/" }: loginProps) {
   const [isSubmitting, setSubmitting] = useState<boolean>(false);
   const [values, setValues] = useState<loginValue>({ email: "", password: "" });
+  const router = useRouter();
   return (
     <>
       <div>
@@ -50,6 +52,9 @@ export default function Login({ redirect = "asdf" }: loginProps) {
               });
               const jdata = await data.json();
               console.log(jdata);
+              if ((jdata.status = "success")) {
+                router.push(redirect);
+              }
               setSubmitting(false);
             };
             api();

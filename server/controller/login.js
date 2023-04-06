@@ -15,15 +15,16 @@ exports.checkUser = async (req, res) => {
     if (!(await dbcon.connect())) {
       throw "err";
     }
-    const user = await model.userModel.find({ email }).exec();
+    const user = await model.userModel.findOne({ email }).exec();
     console.log(user);
-    if (!user[0]) {
+    if (!user) {
       return res.json({ error: "Email is invalid" });
-    } else if (!(await bcrypt.compare(password, user[0].password))) {
+    } else if (!(await bcrypt.compare(password, user.password))) {
       return res.json({ error: "Password is invalid" });
     } else {
-      req.session.userName = user[0].f_name + " " + user[0].l_name;
-      req.session.userId = user[0]._id;
+      req.session.userName = user.f_name + " " + user.l_name;
+      req.session.userId = user._id;
+      req.session.email = user.email;
 
       return res.json({
         status: "success",
