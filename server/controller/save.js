@@ -57,7 +57,6 @@ exports.adminSave = async (req, res) => {
     f_name: req.body.f_name,
     l_name: req.body.l_name,
     email: req.body.email,
-    role: req.body.role,
     password: password,
     admin: true,
   });
@@ -66,15 +65,10 @@ exports.adminSave = async (req, res) => {
     await dbcon.connect();
     const user = await users.save();
     console.log("user saving success!");
-    session = req.session;
-    session.userName = req.body.f_name + " " + req.body.l_name;
-    session._id = user._id;
-    session.admin = false;
 
     res.json({
       status: "success",
-      username: session.userName,
-      id: session.id,
+      user: { email, f_name, l_name },
     });
   } catch (err) {
     console.log("eror adding: " + err);
