@@ -9,6 +9,9 @@ const app = express();
 const index = require("./routes/route");
 var cors = require("cors");
 const port = 4000;
+const user = require("./model/dbModel").userModel;
+const bcrypt = require("bcrypt");
+const dbcon = require("./controller/dbcon");
 
 // ********************************************** importing ************************************************
 
@@ -49,5 +52,28 @@ if (process.env.__PROD__ == 1) app.use("/test", require("./tests/testRoutes"));
 // routing toindex page
 app.use(index);
 
-app.listen(port);
+app.listen(port, async () => {
+  if (!(await dbcon.connect())) {
+    throw "error connecting to db";
+  } else {
+    var password = "";
+    if ((await user.find({ admin: true })).length < 1) {
+      const salt = await bcrypt.genSalt(10);
+      password = await bcrypt.hash("adminpassword", salt);
+      const users = new user({
+        f_name: "admin",
+        l_name: "test",
+        email: "admintest@admin.com",
+        password: password,
+        admin: true,
+      });
+      try {
+        const user = await users.save();
+        console.log("user saving success!");
+      } catch (err) {
+        console.log("eror adding: " + err + " password: " + password);
+      }
+    }
+  }
+});
 console.log("server live at: http://localhost:" + port);

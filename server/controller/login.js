@@ -11,21 +11,21 @@ exports.checkUser = async (req, res) => {
   console.log(req.body);
   const email = req.body.email;
   const password = req.body.password;
+  const adminLogin = req.query.adminLogin || false;
   try {
     if (!(await dbcon.connect())) {
       throw "err";
     }
     const user = await model.userModel.findOne({ email }).exec();
     console.log(user);
-    if (!user) {
-      return res.json({ error: "Email is invalid" });
+    if (!user || (!user.admin && adminLogin)) {
+      return res.json({ status: "error", error: "invalid user email" });
     } else if (!(await bcrypt.compare(password, user.password))) {
-      return res.json({ error: "Password is invalid" });
+      return res.json({ status: "error", error: "Password is invalid" });
     } else {
       req.session.userName = user.f_name + " " + user.l_name;
       req.session.userId = user._id;
       req.session.email = user.email;
-
       return res.json({
         status: "success",
         username: req.session.userName,

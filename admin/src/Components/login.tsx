@@ -41,18 +41,22 @@ export default function Login({ redirect = "/" }: loginProps) {
           onClick={(event) => {
             setSubmitting(true);
             const api = async () => {
-              const data = await fetch("http://localhost:4000/login", {
-                method: "POST",
-                credentials: "include",
-                headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(values),
-              });
+              const data = await fetch(
+                "http://localhost:4000/login?adminLogin=1",
+                {
+                  method: "POST",
+                  credentials: "include",
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                  },
+
+                  body: JSON.stringify(values),
+                }
+              );
               const jdata = await data.json();
               console.log(jdata);
-              if ((jdata.status = "success")) {
+              if (jdata.status == "success") {
                 router.push(redirect);
               }
               setSubmitting(false);
