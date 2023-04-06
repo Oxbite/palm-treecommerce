@@ -52,8 +52,6 @@ export default function Home(){
                     })}
                     
                 </Swiper>
-                {/* <object type="image/svg+xml" aria-label="pcImage" data={ftProduct} ></object> */}
-
                 </div>
                
             </div>
