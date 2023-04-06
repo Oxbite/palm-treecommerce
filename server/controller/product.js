@@ -16,7 +16,7 @@ exports.topProducts = async (req, res) => {
       .limit(limit)
       .skip(limit * (page - 1))
       .populate();
-    res.json({ products });
+    res.json({ products, maxSize: await product.count() });
   } catch (err) {
     console.log(err);
     res.json({ error: "server error please try again" });
@@ -37,7 +37,7 @@ exports.similarProducts = async (req, res) => {
       .sort({ order_number: -1 })
       .limit(20)
       .populate();
-    res.json({ products });
+    res.json({ products, maxSize: await product.count() });
   } catch (err) {
     console.log(err);
     res.json({ error: "server error please try again" });
@@ -70,7 +70,10 @@ exports.category = async (req, res) => {
       .limit(limit)
       .skip(limit * (page - 1))
       .populate();
-    res.json({ products });
+    res.json({
+      products,
+      maxSize: await product.countDocuments({ categoryId }),
+    });
   } catch (err) {
     console.log(err);
     res.json({ error: "server error please try again" });
@@ -102,11 +105,10 @@ exports.new = async (req, res) => {
     const { page, limit, categoryId } = req.query;
     const products = await product
       .find({ categoryId })
-      .sort({ order_number: -1 })
       .limit(limit)
       .skip(limit * (page - 1))
       .populate();
-    res.json({ products });
+    res.json({ products, maxSize: product.estimatedDocumentCount() });
   } catch (err) {
     console.log(err);
     res.json({ error: "server error please try again" });

@@ -1,4 +1,3 @@
-const { response } = require("express");
 const { disconnect } = require("mongoose");
 const dbModel = require("../model/dbModel");
 const bcrypt = require("bcrypt");

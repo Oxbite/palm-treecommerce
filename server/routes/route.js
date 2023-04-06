@@ -64,6 +64,7 @@ route.get("/delProducts/", del.deleteProducts);
 
 route.get("/featured", product.featured);
 route.get("/product", product.product);
+route.get("/products", product.new);
 route.get("/topProduct", product.topProducts);
 route.get("/similarProduct/:categoryId", product.similarProducts);
 route.get("/category", product.category);
