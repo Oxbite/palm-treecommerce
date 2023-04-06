@@ -35,17 +35,17 @@ exports.fetchUsersName = async (req, res) => {
 
 //*************************************************** USERS END ***************************************************/
 
-exports.fetchShops = async (res, req) => {
+exports.fetchShops = async (req, res) => {
   const shops = await model.shopModel.find({}).populate();
   res.json({ "all shops data": shops });
 };
 
-exports.fetchCategory = async (res, req) => {
+exports.fetchCategory = async (req, res) => {
   const categories = await model.categoryModel.find({}).populate();
-  res.json({ "all category data": categories });
+  res.json({ categories: categories });
 };
 
-exports.fetchPoducts = async (res, req) => {
+exports.fetchPoducts = async (req, res) => {
   const products = await model.productModel.find({}).populate();
   res.json({ "all product data": products });
 };

@@ -85,13 +85,12 @@ exports.adminSave = async (req, res) => {
 };
 
 exports.categorySave = async (req, res) => {
-  dbcon.connect();
-  const categories = new dbModel.categoryModel({
-    name: req.body.name,
-    status: req.body.status,
-  });
-
   try {
+    if (!(await dbcon.connect())) throw "error connecting to db";
+    const categories = new dbModel.categoryModel({
+      name: req.body.name,
+      status: req.body.status || "Inactive",
+    });
     const category = await categories.save();
     console.log("category saving success!");
   } catch (err) {
