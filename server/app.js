@@ -22,14 +22,9 @@ app.use(
 
 // app.use(bodyParser.urlencoded({extended:false}));
 const day = 1000 * 60 * 60 * 12; //12 hours
-app.use(
-  cors({
-    origin: "http://localhost:3000/",
-    credentials: true,
-  })
-);
 
-app.use(cors());
+// app.use(cors());
+
 app.use(
   session({
     name: "sessing",
@@ -39,6 +34,14 @@ app.use(
     cookie: { maxAge: day, secure: false },
   })
 );
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+
 app.use(cookieParser());
 require("dotenv").config();
 if (process.env.__PROD__ == 1) app.use("/test", require("./tests/testRoutes"));

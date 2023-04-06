@@ -17,14 +17,14 @@ sendMail = (to, subject, message, cb) => {
   const sub = subject;
   const text = message;
   console.log(sub + " " + text);
-  let message = {
+  let m = {
     from: "yatra.infosys@gmail.com",
-    to: "yatrainfosys@gmail.com",
+    to: to,
     subject: sub,
     text: text,
   };
 
-  transporter.sendMail(message, (err, info) => {
+  transporter.sendMail(m, (err, info) => {
     if (err) {
       console.error(err);
       cb.err();
